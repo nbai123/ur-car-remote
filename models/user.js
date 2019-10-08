@@ -9,6 +9,10 @@ var userSchema = new Schema ({
     email: String,
 })
 
+userSchema.methods.comparePassword = function(tryPassword, cb) {
+    bcrypt.compare(tryPassword, this.password, cb);
+  };
+
 
 userSchema.pre('save', function(next) {
     // this will be set to the current document
@@ -21,4 +25,4 @@ userSchema.pre('save', function(next) {
             user.password = hash;
             next();
         });
-});
+}); 
