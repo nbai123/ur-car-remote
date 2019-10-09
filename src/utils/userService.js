@@ -1,6 +1,6 @@
 import tokenService from './tokenService';
 
-const BASE_URL = '/users/'
+const BASE_URL = '/'
 
 function signup(user) {
     return fetch(BASE_URL + 'signup', {

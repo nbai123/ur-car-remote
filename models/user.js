@@ -7,12 +7,18 @@ var Schema = mongoose.Schema;
 var userSchema = new Schema ({
     name: String,
     email: String,
-})
+    password: String
+}, {
+    timestamps: true
+});
 
-userSchema.methods.comparePassword = function(tryPassword, cb) {
-    bcrypt.compare(tryPassword, this.password, cb);
-  };
-
+userSchema.set('toJSON', {
+    transform: function(doc, ret) {
+      // remove the password property when serializing doc to JSON
+      delete ret.password;
+      return ret;
+    }
+  });
 
 userSchema.pre('save', function(next) {
     // this will be set to the current document
@@ -26,3 +32,9 @@ userSchema.pre('save', function(next) {
             next();
         });
 }); 
+
+userSchema.methods.comparePassword = function(tryPassword, cb) {
+    bcrypt.compare(tryPassword, this.password, cb);
+  };
+
+module.exports = mongoose.model('User', userSchema);

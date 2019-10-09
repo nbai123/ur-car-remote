@@ -1,5 +1,6 @@
 import React from 'react';
-import NavBar from '../../components/NavBar/NavBar';
+import NavBar from '../NavBar/NavBar'
+import RemoteButtons from '../RemoteButtons/RemoteButtons'
 import { PromiseProvider } from 'mongoose';
 
 const CarRemote = (props) => {
@@ -9,6 +10,7 @@ const CarRemote = (props) => {
                 user={props.user}
                 handleLogout={props.handleLogout}
             />
+            <RemoteButtons />
         </div>
     )
 }

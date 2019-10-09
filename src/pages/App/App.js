@@ -4,9 +4,8 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import logo from '../../logo.svg';
 import userService from '../../utils/userService';
 import { PromiseProvider } from 'mongoose';
-import NavBar from '../../components/NavBar/NavBar';
 import SignupPage from '../SignupPage/SignupPage'
-import CarRemote from '../CarRemote/CarRemote';
+import CarRemote from '../../components/CarRemote/CarRemote';
 
 class App extends Component {
   state = {
@@ -30,6 +29,10 @@ class App extends Component {
           <Switch>
           <Route exact path='/' render={() =>
               <CarRemote
+                locked={this.state.locked}
+                windows={this.state.windows}
+                temp={this.state.temp}
+                running={this.state.running}
                 user={this.state.user}
               />
             }/>
