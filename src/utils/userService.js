@@ -14,7 +14,7 @@ function signup(user) {
       throw new Error('Email already taken!');
     })
     // Parameter destructuring!
-    .then(({token}) => token);
+    .then(({token}) => tokenService.setToken(token));
     // the above could have been written as
     //.then((token) => token.token);
   }

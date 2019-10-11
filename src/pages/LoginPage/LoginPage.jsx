@@ -20,9 +20,12 @@ class LoginPage extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log('before')
       await userService.login(this.state);
       // Let <App> know a user has signed up!
+      console.log('out')
       this.props.handleSignupOrLogin();
+      console.log('in')
       // Successfully signed up - show GamePage
       this.props.history.push('/');
     } catch (err) {
