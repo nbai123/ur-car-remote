@@ -1,6 +1,6 @@
 import tokenService from './tokenService';
 
-const BASE_URL = '/'
+const BASE_URL = '/users/'
 
 function signup(user) {
     return fetch(BASE_URL + 'signup', {
@@ -9,6 +9,7 @@ function signup(user) {
       body: JSON.stringify(user)
     })
     .then(res => {
+      console.log('res', res)
       if (res.ok) return res.json();
       throw new Error('Email already taken!');
     })
