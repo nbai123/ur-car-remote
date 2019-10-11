@@ -9,12 +9,31 @@ import CarRemote from '../../components/CarRemote/CarRemote';
 
 class App extends Component {
   state = {
-    locked: true,
-    windows: 'closed',
-    temp: null,
-    running: true, 
+    ...this.getInitialState(),
     user: userService.getUser()
    }
+
+   getInitialState() {
+    return {
+      locked: true,
+      windows: true,
+      temp: null,
+      running: true,
+    };
+  }
+
+  handleLockClick = () => {
+      this.setState(prevState => (
+        { locked: !prevState.locked }));
+  }
+  handleStartStopClick = () => {
+      this.setState(prevState => (
+        { running: !prevState.running }));
+  }
+  handleWindowClick = () => {
+      this.setState(prevState => (
+        { windows: !prevState.windows }));
+  }
 
    handleSignuporLogin = () => {
      this.setState ({user: userService.getUser()});
@@ -26,6 +45,13 @@ class App extends Component {
         <h1>
           Ur Car Remote
         </h1>
+        <h2>
+          Status
+        </h2>
+          <span>{this.state.locked ? 'Locked' : 'Unlocked'}</span>
+          <span>{this.state.running ? 'Running' : 'Not Running'}</span>
+          <span>{this.state.windows ? 'Closed' : 'Open'}</span>
+          {this.state.temp}
           <Switch>
           <Route exact path='/' render={() =>
               <CarRemote
@@ -34,6 +60,9 @@ class App extends Component {
                 temp={this.state.temp}
                 running={this.state.running}
                 user={this.state.user}
+                handleLockClick={this.handleLockClick}
+                handleStartStopClick={this.handleStartStopClick}
+                handleWindowClick={this.handleWindowClick}
               />
             }/>
             <Route exact path='/signup' render={({ history}) =>

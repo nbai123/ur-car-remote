@@ -1,23 +1,15 @@
 import React from 'react';
+import LockUnlock from '../LockUnlock/LockUnlock'
+import StartStop from '../StartStop/StartStop'
+import Windows from '../Windows/Windows'
+import Temperature from '../Temperature/Temperature'
 
 const RemoteButtons = (props) => (
         <div>
-            <button>
-                Lock/Unlock
-            </button>
-            <button>
-                Windows
-            </button>
-            <form>
-                <label>
-                    Temp:
-                    <input type='text' placeholder='64' />
-                </label>
-                <input type='submit' value='Submit' />
-            </form>
-            <button>
-                Start/Stop
-            </button>
+            <StartStop handleStartStopClick={props.handleStartStopClick} />
+            <LockUnlock handleLockClick={props.handleLockClick} />
+            <Windows handleWindowClick={props.handleWindowClick} />
+            <Temperature />
         </div>
 )
 

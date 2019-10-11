@@ -10,7 +10,11 @@ const CarRemote = (props) => {
                 user={props.user}
                 handleLogout={props.handleLogout}
             />
-            <RemoteButtons />
+            <RemoteButtons 
+            handleLockClick={props.handleLockClick}
+            handleStartStopClick={props.handleStartStopClick}
+            handleWindowClick={props.handleWindowClick} 
+            />
         </div>
     )
 }
