@@ -9,7 +9,6 @@ const RemoteButtons = (props) => (
             <StartStop handleStartStopClick={props.handleStartStopClick} />
             <LockUnlock handleLockClick={props.handleLockClick} />
             <Windows handleWindowClick={props.handleWindowClick} />
-            <Temperature />
         </div>
 )
 

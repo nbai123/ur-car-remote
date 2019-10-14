@@ -22,6 +22,7 @@ class LoginPage extends Component {
     try {
       console.log('before')
       await userService.login(this.state);
+      console.log('after')
       // Let <App> know a user has signed up!
       console.log('out')
       this.props.handleSignupOrLogin();

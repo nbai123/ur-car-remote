@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import logo from '../../logo.svg';
 import userService from '../../utils/userService';
-import { PromiseProvider } from 'mongoose';
 import SignupPage from '../SignupPage/SignupPage'
 import LoginPage from '../LoginPage/LoginPage'
 import CarRemote from '../../components/CarRemote/CarRemote';
 import AddCar from '../AddCar/AddCar'
+import NavBar from '../../components/NavBar/NavBar'
 
 class App extends Component {
   state = {
@@ -52,8 +51,12 @@ class App extends Component {
         <h1>
           Ur Car Remote
         </h1>
-        
+        <NavBar 
+          user={this.state.user}
+          handleLogout={this.handleLogout}
+          />
           <Switch>
+          
           <Route exact path='/' render={() =>
             userService.getUser() ?
             <div>
@@ -62,7 +65,6 @@ class App extends Component {
                 windows={this.state.windows}
                 temp={this.state.temp}
                 running={this.state.running}
-                handleLogout={this.handleLogout}
                 user={this.state.user}
                 handleLockClick={this.handleLockClick}
                 handleStartStopClick={this.handleStartStopClick}
@@ -71,13 +73,13 @@ class App extends Component {
               <h2>
                 Status
               </h2>
-                <span>{this.state.locked ? 'Locked' : 'Unlocked'}</span>
-                <span>{this.state.running ? 'Running' : 'Not Running'}</span>
-                <span>{this.state.windows ? 'Closed' : 'Open'}</span>
-                <span>{this.state.temp}</span>
+                <div>{this.state.running ? 'Running' : 'Not Running'}</div>
+                <div>{this.state.locked ? 'Locked' : 'Unlocked'}</div>
+                <div>{this.state.windows ? 'Closed' : 'Open'}</div>
+                <div>{this.state.temp}</div>
             </div>
               :
-              <Redirect to='/login' />
+              <Redirect to='/' />
             }/>
             <Route exact path='/login' render={({ history }) => 
               <LoginPage
@@ -91,11 +93,9 @@ class App extends Component {
                 handleSignupOrLogin={this.handleSignupOrLogin}
                 />
             }/>
-            <Route exact path='/createcar' render={({ history}) =>
-              <AddCar
-                history={history}
-                />
-              }/>
+              <Route exact path='/createcar' render={() =>
+                <AddCar />
+                }/>
           </Switch>
       </div>
      );
