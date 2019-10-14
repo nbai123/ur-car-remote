@@ -4,7 +4,7 @@
 
 A mock up design of a car remote.
 
-<ur-car-remote.herokuaap.com>
+[Link to App](https://ur-car-remote.herokuapp.com/)
 
 ## Technologies Used
 
